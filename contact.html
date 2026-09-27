@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Me — PaulFolio</title>
+  <meta name="description" content="Hubungi Paulus Petrus P Sianipar - Formulir kontak interaktif, nomor HP/WhatsApp, alamat kantor, email, dan Google Maps lokasi studio.">
+  <meta name="author" content="Paulus Petrus P Sianipar">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Background Dynamic Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="navbar-header" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-code"></i>
+        </div>
+        <span>Paul<span class="gradient-text">Folio</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="about.html" class="nav-link"><i class="fa-solid fa-user"></i> About</a>
+        <a href="projects.html" class="nav-link"><i class="fa-solid fa-briefcase"></i> Project</a>
+        <a href="contact.html" class="nav-link active"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="btn-notif-bell" id="notifBellBtn" aria-label="Aktifkan Notifikasi" title="Aktifkan Notifikasi Browser">
+          <i class="fa-solid fa-bell" id="notifBellIcon"></i>
+          <span class="notif-dot" id="notifDot"></span>
+        </button>
+        <button class="btn btn-outline btn-sm" id="cvHeaderBtn">
+          <i class="fa-solid fa-file-arrow-down"></i> Unduh CV
+        </button>
+        <a href="contact.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+        </a>
+        <!-- Auth Buttons (shown when logged out) -->
+        <div class="auth-nav-group" id="authNavGroup">
+          <a href="auth.html" class="btn btn-primary btn-sm" id="navLoginBtn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </a>
+        </div>
+        <!-- User Info (shown when logged in) -->
+        <div class="auth-user-group" id="authUserGroup" style="display: none;">
+          <span class="auth-user-name" id="navUserName">
+            <i class="fa-solid fa-user-circle"></i> <span id="navUserNameText">User</span>
+          </span>
+          <button class="btn btn-outline btn-sm" id="navLogoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i> Keluar
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <nav class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="about.html" class="mobile-nav-link"><i class="fa-solid fa-user"></i> About</a>
+      <a href="projects.html" class="mobile-nav-link"><i class="fa-solid fa-briefcase"></i> Project</a>
+      <a href="contact.html" class="mobile-nav-link active"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </nav>
+    <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px;">
+      <button class="btn btn-outline" id="cvMobileBtn">
+        <i class="fa-solid fa-file-arrow-down"></i> Unduh CV PDF
+      </button>
+      <a href="contact.html" class="btn btn-primary">
+        <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+      </a>
+      <div class="auth-nav-group" id="authNavGroupMobile">
+        <a href="auth.html" class="btn btn-primary">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+      </div>
+      <div class="auth-user-group" id="authUserGroupMobile" style="display: none;">
+        <span class="auth-user-name">
+          <i class="fa-solid fa-user-circle"></i> <span id="navUserNameTextMobile">User</span>
+        </span>
+        <button class="btn btn-outline" id="navLogoutBtnMobile">
+          <i class="fa-solid fa-right-from-bracket"></i> Keluar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO BANNER -->
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-banner-title">Hubungi <span class="gradient-text">Saya</span></h1>
+      <p class="page-banner-subtitle">
+        Siap berdiskusi mengenai proyek baru, konsultasi arsitektur IT & Creative Design, atau penawaran kerjasama profesional.
+      </p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <span class="current">Contact</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main>
+    <section class="contact-section" style="padding-top: 40px; padding-bottom: 80px;">
+      <div class="container">
+        <!-- Contact Status Bar Banner -->
+        <div class="contact-status-bar glass-card">
+          <div class="status-indicator">
+            <span class="status-pulse-dot"></span>
+            <span>Available for Freelance Projects &amp; Full-time Roles</span>
+          </div>
+          <div class="response-time-tag">
+            <i class="fa-solid fa-bolt" style="color: var(--amber);"></i> Respon Cepat (Maksimal 1x24 Jam)
+          </div>
+        </div>
+
+        <!-- Contact Grid (Left: Info Panel | Right: Interactive Form) -->
+        <div class="contact-grid">
+          
+          <!-- LEFT COLUMN: Modern Info Panel & WhatsApp Action -->
+          <div class="contact-info-column">
+            <div class="glass-card contact-info-panel" style="padding: 32px;">
+              <div class="contact-panel-header">
+                <div class="contact-panel-badge">
+                  <i class="fa-solid fa-address-card"></i> Direct Contact
+                </div>
+                <h3 class="contact-panel-title">Informasi &amp; Saluran Kontak</h3>
+                <p class="contact-panel-desc">
+                  Silakan hubungi Paulus melalui saluran komunikasi di bawah ini atau isi formulir di samping untuk respon cepat.
+                </p>
+              </div>
+
+              <div class="contact-cards-list">
+                <!-- Item 1: Nama & Role -->
+                <div class="contact-card-modern">
+                  <div class="contact-icon icon-purple">
+                    <i class="fa-solid fa-id-card"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span class="contact-card-label">Nama Lengkap &amp; Profesi</span>
+                    <h4 class="contact-card-value">Paulus Petrus P Sianipar</h4>
+                    <span class="sub-text">Creative Designer &amp; IT Specialist</span>
+                  </div>
+                </div>
+
+                <!-- Item 2: Alamat / Domisili -->
+                <div class="contact-card-modern">
+                  <div class="contact-icon icon-red">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span class="contact-card-label">Alamat Studio / Domisili</span>
+                    <h4 class="contact-card-value">Bekasi, Jawa Barat, Indonesia</h4>
+                    <span class="sub-text">Tersedia untuk Kerja Remote &amp; Hybrid</span>
+                  </div>
+                </div>
+
+                <!-- Item 3: No HP / WA -->
+                <div class="contact-card-modern">
+                  <div class="contact-icon icon-emerald">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span class="contact-card-label">No. Handphone / WhatsApp Direct</span>
+                    <h4 class="contact-card-value"><a href="https://wa.me/6285162744708" target="_blank">+62 85162744708 (WA Only)</a></h4>
+                    <span class="sub-text" style="color: var(--emerald); font-weight: 500;">● Online Chat via WhatsApp</span>
+                  </div>
+                </div>
+
+                <!-- Item 4: Email Direct -->
+                <div class="contact-card-modern">
+                  <div class="contact-icon icon-cyan">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span class="contact-card-label">Email Resmi Studio</span>
+                    <h4 class="contact-card-value"><a href="mailto:paulussianipar@gmail.com">paulussianipar@gmail.com</a></h4>
+                    <span class="sub-text">Kirimkan rincian proyek / proposal</span>
+                  </div>
+                </div>
+
+                <!-- Item 5: Jam Kerja -->
+                <div class="contact-card-modern">
+                  <div class="contact-icon icon-amber">
+                    <i class="fa-solid fa-clock"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span class="contact-card-label">Jam Operasional &amp; Respon</span>
+                    <h4 class="contact-card-value">Senin - Sabtu: 08:00 - 20:00 WIB</h4>
+                    <span class="sub-text">Respon pesan masuk &lt; 2 jam</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Instant WhatsApp Direct Chat CTA Button -->
+              <a href="https://wa.me/6285162744708" target="_blank" class="btn btn-emerald w-100 whatsapp-cta-btn">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i>
+                <span>Chat Direct via WhatsApp</span>
+                <i class="fa-solid fa-arrow-right icon-arrow"></i>
+              </a>
+
+              <!-- Social Media Connections -->
+              <div class="social-connect-box">
+                <h5 class="social-box-title">Media Sosial &amp; Network:</h5>
+                <div class="social-links-pills">
+                  <a href="https://github.com" target="_blank" class="social-pill-btn" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i> GitHub
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" class="social-pill-btn" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                  </a>
+                  <a href="https://twitter.com" target="_blank" class="social-pill-btn" aria-label="Twitter">
+                    <i class="fa-brands fa-twitter"></i> Twitter
+                  </a>
+                  <a href="https://dribbble.com" target="_blank" class="social-pill-btn" aria-label="Dribbble">
+                    <i class="fa-brands fa-dribbble"></i> Dribbble
+                  </a>
+                  <a href="https://instagram.com" target="_blank" class="social-pill-btn" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: Modern Interactive Form Card -->
+          <div class="glass-card form-wrapper-modern">
+            <div class="form-header-badge">
+              <span class="badge-quick-tag"><i class="fa-solid fa-paper-plane"></i> Live Form</span>
+              <h3 class="form-title-modern">Kirim Pesan Langsung</h3>
+              <p class="form-subtitle-modern">
+                Isi formulir di bawah ini dan pesan Anda akan dikirim langsung ke email inbox Paulus.
+              </p>
+            </div>
+
+            <!-- Quick Topic Selector Chips -->
+            <div class="topic-selector-wrap">
+              <label class="topic-label">Pilih Kategori Kebutuhan Proyek:</label>
+              <div class="topic-chips" id="topicChips">
+                <button type="button" class="topic-chip active" data-topic="Pengembangan Web / App">
+                  <i class="fa-solid fa-code"></i> Web &amp; App
+                </button>
+                <button type="button" class="topic-chip" data-topic="Desain Kreatif & UI/UX">
+                  <i class="fa-solid fa-palette"></i> UI/UX &amp; Design
+                </button>
+                <button type="button" class="topic-chip" data-topic="Konsultasi IT & Arsitektur">
+                  <i class="fa-solid fa-gears"></i> IT Consulting
+                </button>
+                <button type="button" class="topic-chip" data-topic="Kerja Sama / Hiring">
+                  <i class="fa-solid fa-briefcase"></i> Hiring / Other
+                </button>
+              </div>
+            </div>
+
+            <form id="contactForm" class="contact-form" onsubmit="window.handleFormSubmit(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Nama Lengkap <span class="required-star">*</span></label>
+                  <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-user input-icon"></i>
+                    <input type="text" id="name" class="form-input" placeholder="Masukkan nama Anda" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Alamat Email <span class="required-star">*</span></label>
+                  <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-envelope input-icon"></i>
+                    <input type="email" id="email" class="form-input" placeholder="nama@domain.com" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subjek / Topik <span class="required-star">*</span></label>
+                <div class="input-icon-wrapper">
+                  <i class="fa-solid fa-tag input-icon"></i>
+                  <input type="text" id="subject" class="form-input" value="Pengembangan Web / App" placeholder="Contoh: Penawaran Desain & Web App" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Pesan Anda <span class="required-star">*</span></label>
+                <div class="input-icon-wrapper">
+                  <i class="fa-solid fa-message input-icon icon-top"></i>
+                  <textarea id="message" class="form-input form-textarea" rows="5" placeholder="Tuliskan detail kebutuhan proyek atau pertanyaan Anda di sini..." required></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg btn-block submit-btn-modern" id="submitBtn">
+                <i class="fa-solid fa-paper-plane"></i> Kirim Pesan Sekarang
+              </button>
+
+              <!-- Tombol Aktifkan Notifikasi Lonceng -->
+              <button type="button" class="btn btn-outline btn-block" id="enableNotifBtn" style="margin-top: 10px; display: none;">
+                <i class="fa-solid fa-bell"></i> Aktifkan Notifikasi Browser
+              </button>
+              
+              <div class="form-privacy-note">
+                <i class="fa-solid fa-shield-halved" style="color: var(--emerald);"></i>
+                <span>Informasi Anda dijamin aman &amp; tidak pernah disebarluaskan.</span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Google Maps Location Section -->
+        <div class="glass-card maps-container-wrapper" style="margin-top: 50px;">
+          <div class="maps-header">
+            <div class="maps-title-info">
+              <div class="contact-icon" style="background: rgba(244, 63, 94, 0.15); color: var(--accent); border: 1px solid rgba(244, 63, 94, 0.3);">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </div>
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: white;">Lokasi Studio & Peta Google Maps</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem;">Clarista Promosi, Jawa Barat, Indonesia</p>
+              </div>
+            </div>
+            <a href="https://www.google.com/maps/place/Clarista+Promosi/" target="_blank" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Google Maps
+            </a>
+          </div>
+
+          <div class="maps-wrapper" style="height: 360px; border-radius: 0 0 var(--radius-lg) var(--radius-lg); overflow: hidden; border-top: 1px solid var(--border-glass);">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15863.599745942689!2d106.9366402!3d-6.2768852!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698d125bf98c8d%3A0x97a7268772a6e067!2sClarista%20Promosi!5e0!3m2!1sen!2sid!4v1790405655792!5m2!1sen!2sid" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Google Maps Location Clarista Promosi">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER SECTION -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-code"></i></div>
+            <span>Paul<span class="gradient-text">Folio</span></span>
+          </a>
+          <p class="footer-tagline">
+            Mengembangkan solusi produk digital & desain kreatif modern dengan standar industri dan arsitektur kode berkualitas.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com" target="_blank" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://dribbble.com" target="_blank" class="social-icon" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Navigasi Halaman</h4>
+          <ul class="footer-menu">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> About</a></li>
+            <li><a href="projects.html"><i class="fa-solid fa-chevron-right"></i> Project</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Skill Tags Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Keahlian Utama</h4>
+          <div class="project-tags">
+            <span class="tag">Creative Design</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">React.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">UI/UX Figma</span>
+            <span class="tag">Node.js</span>
+          </div>
+        </div>
+
+        <!-- Contact Info Column -->
+        <div class="footer-info-col">
+          <h4 class="footer-col-title">Informasi Kontak</h4>
+          <p><i class="fa-solid fa-user" style="color: var(--primary);"></i> Paulus Petrus P Sianipar</p>
+          <p><i class="fa-solid fa-envelope" style="color: var(--secondary);"></i> paulussianipar@gmail.com</p>
+          <p><i class="fa-solid fa-phone" style="color: var(--emerald);"></i> +62 85162744708 (WA Only)</p>
+          <p><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Bekasi, Jawa Barat, Indonesia</p>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>PaulFolio</strong> — Paulus Petrus P Sianipar. All Rights Reserved.
+        </div>
+        <div>
+          <a href="#" style="color: var(--text-muted); margin-right: 15px;">Privacy Policy</a>
+          <a href="#" style="color: var(--text-muted);">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- INTERACTIVE CV MODAL -->
+  <div class="modal" id="cvModal">
+    <div class="modal-content glass-card" style="max-width: 750px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-id-card" style="color: var(--primary);"></i> Curriculum Vitae — Paulus Petrus P Sianipar</h3>
+        <button class="modal-close" id="closeCvModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; margin-bottom: 25px;">
+          <h2 style="color: var(--text-main); font-size: 1.6rem;">Paulus Petrus P Sianipar</h2>
+          <p style="color: var(--text-muted);">Creative Designer & IT Specialist</p>
+          <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 4px;">Bekasi, Jawa Barat, Indonesia | paulussianipar@gmail.com | +62 85162744708</p>
+        </div>
+
+        <h4 style="color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid var(--border-glass); padding-bottom: 5px;">
+          <i class="fa-solid fa-briefcase"></i> Pengalaman Kerja & Spesialisasi
+        </h4>
+        <div style="margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; font-weight: 600;">
+            <span class="text-white">Creative Designer & IT Specialist</span>
+            <span style="color: var(--secondary);">2023 - Sekarang</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Membuat desain visual profesional (Photoshop, Illustrator, Premiere, Canva, InDesign) dan mengelola arsitektur IT.</p>
+        </div>
+
+        <h4 style="color: var(--emerald); margin-bottom: 10px; border-bottom: 1px solid var(--border-glass); padding-bottom: 5px;">
+          <i class="fa-solid fa-graduation-cap"></i> Keahlian utama & Sertifikasi
+        </h4>
+        <ul style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 20px;">
+          <li><i class="fa-solid fa-check" style="color: var(--emerald);"></i> Creative Design: Adobe Illustrator, Photoshop, Premiere, Canva, InDesign</li>
+          <li><i class="fa-solid fa-check" style="color: var(--emerald);"></i> Full Stack Web & Backend Architecture (Laravel, React.js, Node.js, TypeScript)</li>
+          <li><i class="fa-solid fa-check" style="color: var(--emerald);"></i> UI/UX Design & Wireframing (Figma)</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="closeCvModalFooterBtn">Tutup</button>
+        <button class="btn btn-primary" id="downloadCvPdfBtn">
+          <i class="fa-solid fa-download"></i> Unduh File CV (PDF)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Pesan berhasil dikirim!</span>
+  </div>
+
+  <!-- Auth Module -->
+  <script type="module" src="auth.js"></script>
+  <!-- Notification System -->
+  <script defer src="notification.js"></script>
+  <!-- Main JavaScript File -->
+  <script defer src="script.js"></script>
+</body>
+</html>

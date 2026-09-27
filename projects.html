@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects Portfolio — PaulFolio</title>
+  <meta name="description"
+    content="Portofolio Proyek Paulus Petrus P Sianipar - Web Application, Mobile App, dan Creative UI/UX Design modern dengan filter kategori dan modal detail interaktif.">
+  <meta name="author" content="Paulus Petrus P Sianipar">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Ambient Background Dynamic Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="navbar-header" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-code"></i>
+        </div>
+        <span>Paul<span class="gradient-text">Folio</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="about.html" class="nav-link"><i class="fa-solid fa-user"></i> About</a>
+        <a href="projects.html" class="nav-link active"><i class="fa-solid fa-briefcase"></i> Project</a>
+        <a href="contact.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="btn-notif-bell" id="notifBellBtn" aria-label="Aktifkan Notifikasi" title="Aktifkan Notifikasi Browser">
+          <i class="fa-solid fa-bell" id="notifBellIcon"></i>
+          <span class="notif-dot" id="notifDot"></span>
+        </button>
+        <button class="btn btn-outline btn-sm" id="cvHeaderBtn">
+          <i class="fa-solid fa-file-arrow-down"></i> Unduh CV
+        </button>
+        <a href="contact.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+        </a>
+        <!-- Auth Buttons (shown when logged out) -->
+        <div class="auth-nav-group" id="authNavGroup">
+          <a href="auth.html" class="btn btn-primary btn-sm" id="navLoginBtn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </a>
+        </div>
+        <!-- User Info (shown when logged in) -->
+        <div class="auth-user-group" id="authUserGroup" style="display: none;">
+          <span class="auth-user-name" id="navUserName">
+            <i class="fa-solid fa-user-circle"></i> <span id="navUserNameText">User</span>
+          </span>
+          <button class="btn btn-outline btn-sm" id="navLogoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i> Keluar
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <nav class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="about.html" class="mobile-nav-link"><i class="fa-solid fa-user"></i> About</a>
+      <a href="projects.html" class="mobile-nav-link active"><i class="fa-solid fa-briefcase"></i> Project</a>
+      <a href="contact.html" class="mobile-nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </nav>
+    <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px;">
+      <button class="btn btn-outline" id="cvMobileBtn">
+        <i class="fa-solid fa-file-arrow-down"></i> Unduh CV PDF
+      </button>
+      <a href="contact.html" class="btn btn-primary">
+        <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+      </a>
+      <div class="auth-nav-group" id="authNavGroupMobile">
+        <a href="auth.html" class="btn btn-primary">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+      </div>
+      <div class="auth-user-group" id="authUserGroupMobile" style="display: none;">
+        <span class="auth-user-name">
+          <i class="fa-solid fa-user-circle"></i> <span id="navUserNameTextMobile">User</span>
+        </span>
+        <button class="btn btn-outline" id="navLogoutBtnMobile">
+          <i class="fa-solid fa-right-from-bracket"></i> Keluar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO BANNER -->
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-banner-title">Portofolio <span class="gradient-text">Proyek</span></h1>
+      <p class="page-banner-subtitle">
+        Koleksi karya terbaik meliputi Web Application, Mobile App, dan UI/UX Design modern yang telah berhasil dideploy
+        ke publik.
+      </p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <span class="current">Project</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main>
+    <section class="projects-section" style="padding-top: 40px; padding-bottom: 80px;">
+      <div class="container">
+        <!-- Category Filter Buttons -->
+        <div class="filter-controls">
+          <button class="filter-btn active" data-filter="all">Semua Proyek (6)</button>
+          <button class="filter-btn" data-filter="web">Web Application</button>
+          <button class="filter-btn" data-filter="mobile">Mobile App</button>
+          <button class="filter-btn" data-filter="design">UI/UX Design</button>
+        </div>
+
+        <!-- Projects Cards Grid -->
+        <div class="projects-grid" id="projectsGrid">
+
+          <!-- Project Card 1 -->
+          <article class="glass-card project-card" data-category="web" data-project-id="1">
+            <div class="project-img-box">
+              <img src="./assets/images/project1.png" alt="SaaS Analytics Dashboard">
+              <span class="project-badge">Web Application</span>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-project-btn" data-id="1">
+                  <i class="fa-solid fa-expand"></i> Detail Proyek
+                </button>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">SaaS Analytics & Cloud Dashboard</h3>
+              <p class="project-snippet">
+                Platform analytics SaaS performa tinggi dengan visualisasi grafik interaktif real-time dan manajemen
+                data skala besar.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Laravel 10</span>
+                <span class="tag">React.js</span>
+                <span class="tag">Redis</span>
+                <span class="tag">Chart.js</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 2 -->
+          <article class="glass-card project-card" data-category="mobile" data-project-id="2">
+            <div class="project-img-box">
+              <img src="./assets/images/project2.png" alt="CryptoPay Mobile App">
+              <span class="project-badge" style="color: var(--secondary);">Mobile App</span>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-project-btn" data-id="2">
+                  <i class="fa-solid fa-expand"></i> Detail Proyek
+                </button>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">CryptoPay FinTech Companion App</h3>
+              <p class="project-snippet">
+                Aplikasi dompet kripto seluler interaktif dengan fitur transaksi cepat, keamanan biometrik, dan pantauan
+                portofolio.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React Native</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Web3.js</span>
+                <span class="tag">Redux</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 3 -->
+          <article class="glass-card project-card" data-category="design" data-project-id="3">
+            <div class="project-img-box">
+              <img src="./assets/images/project3.png" alt="Luxe Commerce Platform">
+              <span class="project-badge" style="color: var(--accent);">UI/UX Design</span>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-project-btn" data-id="3">
+                  <i class="fa-solid fa-expand"></i> Detail Proyek
+                </button>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Luxe Commerce Luxury Storefront</h3>
+              <p class="project-snippet">
+                Desain sistem antarmuka eksklusif dark glassmorphism untuk platform belanja barang mewah kelas
+                internasional.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Figma</span>
+                <span class="tag">UI/UX Research</span>
+                <span class="tag">Glassmorphism</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 4 -->
+          <article class="glass-card project-card" data-category="web" data-project-id="4">
+            <div class="project-img-box">
+              <img src="./assets/images/project1.png" alt="AI Content Creator Suite">
+              <span class="project-badge">Web Application</span>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-project-btn" data-id="4">
+                  <i class="fa-solid fa-expand"></i> Detail Proyek
+                </button>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">AI Content Generator Suite</h3>
+              <p class="project-snippet">
+                Aplikasi AI generatif untuk memproduksi artikel blog, postingan sosial media, dan aset visual otomatis
+                berbasis LLM.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Next.js 14</span>
+                <span class="tag">OpenAI API</span>
+                <span class="tag">PostgreSQL</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 5 -->
+          <article class="glass-card project-card" data-category="mobile" data-project-id="5">
+            <div class="project-img-box">
+              <img src="./assets/images/project2.png" alt="HealthPulse Wearable">
+              <span class="project-badge" style="color: var(--secondary);">Mobile App</span>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-project-btn" data-id="5">
+                  <i class="fa-solid fa-expand"></i> Detail Proyek
+                </button>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">HealthPulse Smart Fitness Tracker</h3>
+              <p class="project-snippet">
+                Aplikasi kebugaran seluler yang terhubung langsung dengan perangkat smartwatch via Bluetooth LE.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Flutter</span>
+                <span class="tag">Dart</span>
+                <span class="tag">Firebase</span>
+                <span class="tag">BLE API</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 6 -->
+          <article class="glass-card project-card" data-category="web" data-project-id="6">
+            <div class="project-img-box">
+              <img src="./assets/images/project3.png" alt="Quantum Cloud Architecture">
+              <span class="project-badge">Web Application</span>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-project-btn" data-id="6">
+                  <i class="fa-solid fa-expand"></i> Detail Proyek
+                </button>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Quantum Server & Hosting Console</h3>
+              <p class="project-snippet">
+                Konsol manajemen server cloud terpusat untuk memantau kontainer Docker, SSL, dan infrastruktur sistem
+                secara real-time.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Vue.js 3</span>
+                <span class="tag">Golang</span>
+                <span class="tag">Docker API</span>
+                <span class="tag">Linux</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER SECTION -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-code"></i></div>
+            <span>Paul<span class="gradient-text">Folio</span></span>
+          </a>
+          <p class="footer-tagline">
+            Mengembangkan solusi produk digital & desain kreatif modern dengan standar industri dan arsitektur kode
+            berkualitas.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com" target="_blank" class="social-icon" aria-label="GitHub"><i
+                class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i
+                class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Twitter"><i
+                class="fa-brands fa-twitter"></i></a>
+            <a href="https://dribbble.com" target="_blank" class="social-icon" aria-label="Dribbble"><i
+                class="fa-brands fa-dribbble"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Navigasi Halaman</h4>
+          <ul class="footer-menu">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> About</a></li>
+            <li><a href="projects.html"><i class="fa-solid fa-chevron-right"></i> Project</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Skill Tags Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Keahlian Utama</h4>
+          <div class="project-tags">
+            <span class="tag">Creative Design</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">React.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">UI/UX Figma</span>
+            <span class="tag">Node.js</span>
+          </div>
+        </div>
+
+        <!-- Contact Info Column -->
+        <div class="footer-info-col">
+          <h4 class="footer-col-title">Informasi Kontak</h4>
+          <p><i class="fa-solid fa-user" style="color: var(--primary);"></i> Paulus Petrus P Sianipar</p>
+          <p><i class="fa-solid fa-envelope" style="color: var(--secondary);"></i> paulussianipar@gmail.com</p>
+          <p><i class="fa-solid fa-phone" style="color: var(--emerald);"></i> +62 85162744708 (WA Only)</p>
+          <p><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Bekasi, Jawa Barat, Indonesia</p>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>PaulFolio</strong> — Paulus Petrus P Sianipar. All Rights Reserved.
+        </div>
+        <div>
+          <a href="#" style="color: var(--text-muted); margin-right: 15px;">Privacy Policy</a>
+          <a href="#" style="color: var(--text-muted);">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+  <!-- PROJECT DETAIL MODAL -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-content modal-lg glass-card" style="border-radius: var(--radius-lg);">
+      <div class="modal-header">
+        <h3 id="modalProjectTitle">Detail Proyek</h3>
+        <button class="modal-close" id="closeProjectModalBtn" aria-label="Tutup modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalProjectBody">
+        <!-- Diisi dinamis oleh JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="closeProjectModalFooterBtn">
+          <i class="fa-solid fa-xmark"></i> Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CV MODAL -->
+  <div class="modal-overlay" id="cvModal">
+    <div class="modal-content glass-card" style="border-radius: var(--radius-lg);">
+      <div class="modal-header">
+        <h3>Curriculum Vitae</h3>
+        <button class="modal-close" aria-label="Tutup CV">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="cv-document-preview">
+          <div class="cv-header">
+            <h2>Paulus Petrus P Sianipar</h2>
+            <p class="cv-role">Creative Designer &amp; IT Specialist</p>
+            <p class="cv-contact-info">paulussianipar@gmail.com · +62 85162744708 · Bekasi, Indonesia</p>
+          </div>
+          <hr class="cv-divider">
+          <div class="cv-section">
+            <h4>Pengalaman Kerja</h4>
+            <div class="cv-job">
+              <div class="cv-job-header"><strong>Senior Full Stack Engineer</strong><span>2023 – Sekarang</span></div>
+              <ul><li>Memimpin pengembangan platform SaaS dengan Laravel &amp; React</li><li>Mengoptimalkan performa API hingga 60% lebih cepat</li></ul>
+            </div>
+          </div>
+          <hr class="cv-divider">
+          <div class="cv-section">
+            <h4>Keahlian Teknis</h4>
+            <p>React · Laravel · Illustrator · TypeScript · Figma · MySQL · Docker</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="closeCvModalFooterBtn"><i class="fa-solid fa-xmark"></i> Tutup</button>
+        <button class="btn btn-primary" id="downloadCvPdfBtn"><i class="fa-solid fa-file-arrow-down"></i> Unduh PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Pesan berhasil dikirim!</span>
+  </div>
+
+  <!-- Auth Module -->
+  <script type="module" src="auth.js"></script>
+  <!-- Main JavaScript File -->
+  <script defer src="notification.js"></script>
+  <script defer src="script.js"></script>
+</body>
+
+</html>

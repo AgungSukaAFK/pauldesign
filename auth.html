@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Register — PaulFolio</title>
+  <meta name="description" content="Masuk atau daftar akun PaulFolio untuk mengakses fitur eksklusif.">
+  <meta name="author" content="Paulus Petrus P Sianipar">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Ambient Background Dynamic Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- AUTH PAGE CONTENT -->
+  <main class="auth-page-main">
+    <div class="container">
+      <div class="auth-wrapper">
+
+        <!-- Auth Forms (centered, no branding) -->
+        <div class="auth-forms-container">
+
+          <!-- Page Title -->
+          <div class="auth-form-panel active" id="loginPanel">
+            <h3 class="auth-form-title">Login</h3>
+            <p class="auth-form-subtitle">Masuk ke akun PaulFolio Anda</p>
+
+          <!-- Alert Messages -->
+          <div class="auth-alert" id="authAlert" style="display: none;">
+            <i class="fa-solid fa-circle-info" id="authAlertIcon"></i>
+            <span id="authAlertMessage"></span>
+          </div>
+
+            <form id="loginForm" onsubmit="window.handleLoginSubmit(event)">
+              <div class="form-group">
+                <label for="loginEmail">Alamat Email</label>
+                <div class="input-icon-wrapper">
+                  <i class="fa-solid fa-envelope input-icon"></i>
+                  <input type="email" id="loginEmail" class="form-input" placeholder="nama@domain.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <div class="input-icon-wrapper">
+                  <i class="fa-solid fa-lock input-icon"></i>
+                  <input type="password" id="loginPassword" class="form-input" placeholder="Masukkan password" required>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg btn-block" id="loginSubmitBtn">
+                <i class="fa-solid fa-right-to-bracket"></i> Login
+              </button>
+
+              <div class="auth-form-footer">
+                <p>Belum punya akun? <button type="button" class="auth-switch-link" data-switch="register">Daftar di sini</button></p>
+              </div>
+            </form>
+          </div>
+
+          <!-- REGISTER FORM (hidden by default, shown via "Daftar di sini") -->
+          <div class="auth-form-panel" id="registerPanel" style="display: none;">
+            <h3 class="auth-form-title">Buat Akun Baru</h3>
+            <p class="auth-form-subtitle">Daftar sebagai user atau designer</p>
+
+            <form id="registerForm" onsubmit="window.handleRegisterSubmit(event)">
+              <div class="form-group">
+                <label for="registerName">Nama Lengkap</label>
+                <div class="input-icon-wrapper">
+                  <i class="fa-solid fa-user input-icon"></i>
+                  <input type="text" id="registerName" class="form-input" placeholder="Masukkan nama lengkap" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="registerEmail">Alamat Email</label>
+                <div class="input-icon-wrapper">
+                  <i class="fa-solid fa-envelope input-icon"></i>
+                  <input type="email" id="registerEmail" class="form-input" placeholder="nama@domain.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <div class="input-icon-wrapper">
+                  <i class="fa-solid fa-lock input-icon"></i>
+                  <input type="password" id="registerPassword" class="form-input" placeholder="Minimal 6 karakter" required minlength="6">
+                </div>
+              </div>
+
+              <div class="auth-info-box">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Email konfirmasi akan dikirim ke inbox Anda. Klik link untuk mengaktifkan akun sebelum login.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg btn-block" id="registerSubmitBtn">
+                <i class="fa-solid fa-user-plus"></i> Daftar Sekarang
+              </button>
+
+              <div class="auth-form-footer">
+                <p>Sudah punya akun? <button type="button" class="auth-switch-link" data-switch="login">Masuk di sini</button></p>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Pesan berhasil dikirim!</span>
+  </div>
+
+  <!-- Auth JavaScript: supabase.js → auth.js → script.js -->
+  <script src="supabase.js"></script>
+  <script src="auth.js"></script>
+  <script defer src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me — PaulFolio Portfolio</title>
+  <meta name="description"
+    content="Tentang Paulus Petrus P Sianipar - Creative Designer & IT Specialist. Informasi biodata, keahlian teknis, dan CV.">
+  <meta name="author" content="Paulus Petrus P Sianipar">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Ambient Background Dynamic Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="navbar-header" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-code"></i>
+        </div>
+        <span>Paul<span class="gradient-text">Folio</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="about.html" class="nav-link active"><i class="fa-solid fa-user"></i> About</a>
+        <a href="projects.html" class="nav-link"><i class="fa-solid fa-briefcase"></i> Project</a>
+        <a href="contact.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="btn-notif-bell" id="notifBellBtn" aria-label="Aktifkan Notifikasi" title="Aktifkan Notifikasi Browser">
+          <i class="fa-solid fa-bell" id="notifBellIcon"></i>
+          <span class="notif-dot" id="notifDot"></span>
+        </button>
+        <button class="btn btn-outline btn-sm" id="cvHeaderBtn">
+          <i class="fa-solid fa-file-arrow-down"></i> Unduh CV
+        </button>
+        <a href="contact.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+        </a>
+        <!-- Auth Buttons (shown when logged out) -->
+        <div class="auth-nav-group" id="authNavGroup">
+          <a href="auth.html" class="btn btn-primary btn-sm" id="navLoginBtn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </a>
+        </div>
+        <!-- User Info (shown when logged in) -->
+        <div class="auth-user-group" id="authUserGroup" style="display: none;">
+          <span class="auth-user-name" id="navUserName">
+            <i class="fa-solid fa-user-circle"></i> <span id="navUserNameText">User</span>
+          </span>
+          <button class="btn btn-outline btn-sm" id="navLogoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i> Keluar
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <nav class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="about.html" class="mobile-nav-link active"><i class="fa-solid fa-user"></i> About</a>
+      <a href="projects.html" class="mobile-nav-link"><i class="fa-solid fa-briefcase"></i> Project</a>
+      <a href="contact.html" class="mobile-nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </nav>
+    <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px;">
+      <button class="btn btn-outline" id="cvMobileBtn">
+        <i class="fa-solid fa-file-arrow-down"></i> Unduh CV PDF
+      </button>
+      <a href="contact.html" class="btn btn-primary">
+        <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+      </a>
+      <div class="auth-nav-group" id="authNavGroupMobile">
+        <a href="auth.html" class="btn btn-primary">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+      </div>
+      <div class="auth-user-group" id="authUserGroupMobile" style="display: none;">
+        <span class="auth-user-name">
+          <i class="fa-solid fa-user-circle"></i> <span id="navUserNameTextMobile">User</span>
+        </span>
+        <button class="btn btn-outline" id="navLogoutBtnMobile">
+          <i class="fa-solid fa-right-from-bracket"></i> Keluar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO BANNER -->
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-banner-title">Tentang <span class="gradient-text">Saya</span></h1>
+      <p class="page-banner-subtitle">
+        Mengenal lebih dekat Paulus Petrus P Sianipar, profil profesional, biodata lengkap, spesialisasi keahlian
+        teknis, dan Curriculum Vitae.
+      </p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <span class="current">About</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main>
+    <section class="about-section" style="padding-top: 40px; padding-bottom: 80px;">
+      <div class="container">
+        <!-- Main About Grid (Profile Image + Biodata) -->
+        <div class="about-grid">
+          <!-- Left Column: Portrait Photo with Glow -->
+          <div class="about-image-wrapper">
+            <div class="about-image-card">
+              <img src="./assets/images/profile.png" alt="Paulus Petrus P Sianipar" class="about-img" id="profileImage">
+              <div class="about-image-badge">
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Bio & Biodata Details -->
+          <div class="about-details">
+            <!-- Biodata Grid Table (Positioned ON TOP) -->
+            <div class="biodata-grid" style="margin-bottom: 28px;">
+              <div class="biodata-item">
+                <span class="bio-label"><i class="fa-solid fa-id-card"></i> Nama Lengkap</span>
+                <span class="bio-value">Paulus Petrus P Sianipar</span>
+              </div>
+              <div class="biodata-item">
+                <span class="bio-label"><i class="fa-solid fa-user-gear"></i> Profesi</span>
+                <span class="bio-value">Creative Designer & IT</span>
+              </div>
+              <div class="biodata-item">
+                <span class="bio-label"><i class="fa-solid fa-location-dot"></i> Lokasi</span>
+                <span class="bio-value">Bekasi, Jawa Barat, Indonesia</span>
+              </div>
+              <div class="biodata-item">
+                <span class="bio-label"><i class="fa-solid fa-envelope"></i> Email</span>
+                <span class="bio-value">paulussianipar@gmail.com</span>
+              </div>
+              <div class="biodata-item">
+                <span class="bio-label"><i class="fa-solid fa-phone"></i> No. Handphone / WA</span>
+                <span class="bio-value">+62 85162744708 (WA Only)</span>
+              </div>
+              <div class="biodata-item">
+                <span class="bio-label"><i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i> Status
+                  Freelance</span>
+                <span class="bio-value text-emerald">Available</span>
+              </div>
+            </div>
+
+            <!-- Profile Heading & Description Text (Positioned BELOW) -->
+            <h3 class="about-heading">
+              Creative Designer & IT Specialist
+            </h3>
+            <p class="about-text">
+              Saya memfokuskan karir profesional saya untuk membantu perusahaan dan pemangku kepentingan membangun
+              produk digital berskala industri. Berbekal pemahaman arsitektur perangkat lunak yang matang serta dorongan
+              estetika visual, saya percaya setiap karya desain dan baris kode harus berdampak langsung pada kecepatan,
+              kenyamanan, dan kepuasan pengguna.
+            </p>
+
+            <!-- Action Buttons Group -->
+            <div style="margin-top: 28px; display: flex; gap: 16px; flex-wrap: wrap;">
+              <button class="btn btn-primary" id="openCvModalBtn">
+                <i class="fa-solid fa-file-contract"></i> Lihat Curriculum Vitae (CV)
+              </button>
+              <a href="contact.html" class="btn btn-outline">
+                <i class="fa-solid fa-comments"></i> Diskusi Proyek
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical Skills Bar Section -->
+        <div style="margin-top: 70px;">
+          <div class="section-title-wrap text-center">
+            <span class="section-subtitle">Keahlian Utama</span>
+            <h2 class="section-title">Skill & Spesialisasi</h2>
+          </div>
+
+          <div class="skills-grid">
+            <!-- Skill 1: Creative Design -->
+            <div class="glass-card skill-card">
+              <div class="skill-header">
+                <div class="skill-name-wrap">
+                  <div class="skill-icon-box">
+                    <i class="fa-solid fa-palette" style="color: #38bdf8;"></i>
+                  </div>
+                  <div class="skill-title-group">
+                    <h4 class="skill-name">Creative Design</h4>
+                    <p class="skill-subtext">Adobe Illustrator, Photoshop, Premiere, Canva, InDesign</p>
+                  </div>
+                </div>
+                <div class="skill-percentage">95%</div>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 95%;"></div>
+              </div>
+            </div>
+
+            <!-- Skill 2: Backend Architecture -->
+            <div class="glass-card skill-card">
+              <div class="skill-header">
+                <div class="skill-name-wrap">
+                  <div class="skill-icon-box">
+                    <i class="fa-brands fa-laravel" style="color: #ff2d20;"></i>
+                  </div>
+                  <div class="skill-title-group">
+                    <h4 class="skill-name">Backend Architecture</h4>
+                    <p class="skill-subtext">Laravel 10, Node.js, Express, Go & REST API</p>
+                  </div>
+                </div>
+                <div class="skill-percentage">90%</div>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 90%;"></div>
+              </div>
+            </div>
+
+            <!-- Skill 3: Database & Cloud Systems -->
+            <div class="glass-card skill-card">
+              <div class="skill-header">
+                <div class="skill-name-wrap">
+                  <div class="skill-icon-box">
+                    <i class="fa-solid fa-database" style="color: #06b6d4;"></i>
+                  </div>
+                  <div class="skill-title-group">
+                    <h4 class="skill-name">Database & Cloud Systems</h4>
+                    <p class="skill-subtext">MySQL, PostgreSQL, Redis & Cloud Server Management</p>
+                  </div>
+                </div>
+                <div class="skill-percentage">88%</div>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 88%;"></div>
+              </div>
+            </div>
+
+            <!-- Skill 4: UI/UX Design & Wireframing -->
+            <div class="glass-card skill-card">
+              <div class="skill-header">
+                <div class="skill-name-wrap">
+                  <div class="skill-icon-box">
+                    <i class="fa-brands fa-figma" style="color: #a855f7;"></i>
+                  </div>
+                  <div class="skill-title-group">
+                    <h4 class="skill-name">UI/UX Design & Prototyping</h4>
+                    <p class="skill-subtext">Figma, Design System, Wireframing & Usability</p>
+                  </div>
+                </div>
+                <div class="skill-percentage">92%</div>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="width: 92%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER SECTION -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-code"></i></div>
+            <span>Paul<span class="gradient-text">Folio</span></span>
+          </a>
+          <p class="footer-tagline">
+            Mengembangkan solusi produk digital & desain kreatif modern dengan standar industri dan arsitektur kode
+            berkualitas.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com" target="_blank" class="social-icon" aria-label="GitHub"><i
+                class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i
+                class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Twitter"><i
+                class="fa-brands fa-twitter"></i></a>
+            <a href="https://dribbble.com" target="_blank" class="social-icon" aria-label="Dribbble"><i
+                class="fa-brands fa-dribbble"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Navigasi Halaman</h4>
+          <ul class="footer-menu">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> About</a></li>
+            <li><a href="projects.html"><i class="fa-solid fa-chevron-right"></i> Project</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Skill Tags Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Keahlian Utama</h4>
+          <div class="project-tags">
+            <span class="tag">Creative Design</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">React.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">UI/UX Figma</span>
+            <span class="tag">Node.js</span>
+          </div>
+        </div>
+
+        <!-- Contact Info Column -->
+        <div class="footer-info-col">
+          <h4 class="footer-col-title">Informasi Kontak</h4>
+          <p><i class="fa-solid fa-user" style="color: var(--primary);"></i> Paulus Petrus P Sianipar</p>
+          <p><i class="fa-solid fa-envelope" style="color: var(--secondary);"></i> paulussianipar@gmail.com</p>
+          <p><i class="fa-solid fa-phone" style="color: var(--emerald);"></i> +62 85162744708 (WA Only)</p>
+          <p><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Bekasi, Jawa Barat, Indonesia</p>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>PaulFolio</strong> — Paulus Petrus P Sianipar. All Rights Reserved.
+        </div>
+        <div>
+          <a href="#" style="color: var(--text-muted); margin-right: 15px;">Privacy Policy</a>
+          <a href="#" style="color: var(--text-muted);">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Pesan berhasil dikirim!</span>
+  </div>
+
+  <!-- Auth Module -->
+  <script type="module" src="auth.js"></script>
+  <!-- Main JavaScript File -->
+  <script defer src="notification.js"></script>
+  <script defer src="script.js"></script>
+</body>
+
+</html>

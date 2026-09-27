@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PaulFolio — Exclusive Web Developer & UI/UX Portfolio</title>
+  <meta name="description"
+    content="PaulFolio - Portfolio profesional Paulus Petrus P Sianipar, Full-Stack Developer & Creative Designer. Tampilan eksklusif, proyek modern, biodata, CV, dan kontak lengkap.">
+  <meta name="author" content="Paulus Petrus P Sianipar">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Ambient Background Dynamic Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="navbar-header" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-code"></i>
+        </div>
+        <span>Paul<span class="gradient-text">Folio</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="about.html" class="nav-link"><i class="fa-solid fa-user"></i> About</a>
+        <a href="projects.html" class="nav-link"><i class="fa-solid fa-briefcase"></i> Project</a>
+        <a href="contact.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- Bell Notification Icon -->
+        <button class="btn-notif-bell" id="notifBellBtn" aria-label="Aktifkan Notifikasi" title="Aktifkan Notifikasi Browser">
+          <i class="fa-solid fa-bell" id="notifBellIcon"></i>
+          <span class="notif-dot" id="notifDot"></span>
+        </button>
+        <button class="btn btn-outline btn-sm" id="cvHeaderBtn">
+          <i class="fa-solid fa-file-arrow-down"></i> Unduh CV
+        </button>
+        <a href="contact.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+        </a>
+        <!-- Auth Buttons (shown when logged out) -->
+        <div class="auth-nav-group" id="authNavGroup">
+          <a href="auth.html" class="btn btn-primary btn-sm" id="navLoginBtn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </a>
+        </div>
+        <!-- User Info (shown when logged in) -->
+        <div class="auth-user-group" id="authUserGroup" style="display: none;">
+          <span class="auth-user-name" id="navUserName">
+            <i class="fa-solid fa-user-circle"></i> <span id="navUserNameText">User</span>
+          </span>
+          <button class="btn btn-outline btn-sm" id="navLogoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i> Keluar
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <nav class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="about.html" class="mobile-nav-link"><i class="fa-solid fa-user"></i> About</a>
+      <a href="projects.html" class="mobile-nav-link"><i class="fa-solid fa-briefcase"></i> Project</a>
+      <a href="contact.html" class="mobile-nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </nav>
+    <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px;">
+      <button class="btn btn-outline" id="cvMobileBtn">
+        <i class="fa-solid fa-file-arrow-down"></i> Unduh CV PDF
+      </button>
+      <a href="contact.html" class="btn btn-primary">
+        <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+      </a>
+      <div class="auth-nav-group" id="authNavGroupMobile">
+        <a href="auth.html" class="btn btn-primary">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+      </div>
+      <div class="auth-user-group" id="authUserGroupMobile" style="display: none;">
+        <span class="auth-user-name">
+          <i class="fa-solid fa-user-circle"></i> <span id="navUserNameTextMobile">User</span>
+        </span>
+        <button class="btn btn-outline" id="navLogoutBtnMobile">
+          <i class="fa-solid fa-right-from-bracket"></i> Keluar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="container hero-container">
+        <!-- Hero Text Column -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Available for Freelance & Senior Engineering Roles</span>
+          </div>
+
+          <h1 class="hero-title">
+            Membangun Solusi Digital <br>
+            <span class="gradient-text">Eksklusif & Skalabel</span>
+          </h1>
+
+          <div class="hero-subtitle">
+            Halo! Saya Paulus, seorang <span id="typewriter" class="typewriter-text"></span>
+          </div>
+
+          <p class="hero-description">
+            Menggabungkan keahlian mendalam pada pengembangan Creative Design & Full-Stack Web, arsitektur cloud
+            performa tinggi, serta estetika UI/UX modern untuk menciptakan pengalaman digital terbaik.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="projects.html" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-layer-group"></i> Lihat Portofolio Proyek
+            </a>
+            <a href="about.html" class="btn btn-outline btn-lg">
+              <i class="fa-solid fa-user-gear"></i> Tentang Saya
+            </a>
+          </div>
+
+          <!-- Hero Stat Counters -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number" data-target="34">34</div>
+              <div class="stat-plus">+</div>
+              <div class="stat-label">Proyek Selesai</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="5">5</div>
+              <div class="stat-plus">+</div>
+              <div class="stat-label">Tahun Pengalaman</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="99">99</div>
+              <div class="stat-plus">%</div>
+              <div class="stat-label">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Exclusive Dummy UI Interactive Widget -->
+        <div class="hero-visual">
+          <div class="glass-card hero-ui-card">
+            <!-- Window Bar Header -->
+            <div class="code-editor-header">
+              <div class="code-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <div class="code-filename">
+                <i class="fa-brands fa-react" style="color: #61dafb;"></i> paul_portfolio_core.config.ts
+              </div>
+              <div style="font-size: 0.8rem; color: var(--text-dim);">
+                <i class="fa-solid fa-lock" style="color: var(--emerald);"></i> Production Ready
+              </div>
+            </div>
+
+            <!-- Editor Body -->
+            <div class="code-body"><span class="code-keyword">import</span> { <span class="code-type">Engineer</span>,
+              <span class="code-type">SkillStack</span> } <span class="code-keyword">from</span> <span
+                class="code-string">'@paul/core'</span>;
+
+              <span class="code-keyword">export const</span> <span class="code-function">PaulProfile</span>: <span
+                class="code-type">Engineer</span> = {
+              name: <span class="code-string">'Paulus Petrus P Sianipar'</span>,
+              role: <span class="code-string">'Creative Designer & IT Specialist'</span>,
+              experienceYears: <span class="code-number">5</span>,
+              stack: [<span class="code-string">'React'</span>, <span class="code-string">'Laravel'</span>, <span
+                class="code-string">'Illustrator'</span>, <span class="code-string">'TypeScript'</span>],
+              location: <span class="code-string">'Bekasi, Indonesia'</span>,
+              status: <span class="code-string">'Available for Hire 🚀'</span>
+              };
+            </div>
+
+            <!-- System Metrics Live Indicators -->
+            <div class="hero-metrics">
+              <div class="metric-box">
+                <span class="metric-val" style="color: var(--emerald);">100/100</span>
+                <span class="metric-lbl"><i class="fa-solid fa-bolt"></i> Lighthouse Speed</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-val" style="color: var(--primary);">99.9%</span>
+                <span class="metric-lbl"><i class="fa-solid fa-server"></i> System Uptime</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-val" style="color: var(--secondary);">A+</span>
+                <span class="metric-lbl"><i class="fa-solid fa-shield-halved"></i> Security Grade</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MULTI-PAGE NAVIGATION TEASERS SECTION -->
+    <section class="home-teasers">
+      <div class="container">
+        <div class="section-title-wrap text-center">
+          <span class="section-subtitle">Eksplorasi Portfolio</span>
+          <h2 class="section-title">Halaman & Layanan Utama</h2>
+          <p class="section-description" style="margin: 0 auto;">
+            Jelajahi halaman lengkap kami untuk melihat profil, proyek terbaru, serta informasi kontak dan lokasi
+            studio.
+          </p>
+        </div>
+
+        <div class="home-teaser-grid">
+          <!-- Card 1: About -->
+          <div class="glass-card teaser-card">
+            <div class="teaser-icon">
+              <i class="fa-solid fa-user-gear"></i>
+            </div>
+            <h3 class="teaser-title">Tentang Saya (About)</h3>
+            <p class="teaser-desc">
+              Pelajari latar belakang profesional, biodata lengkap, rekam jejak karir, serta unduh Curriculum Vitae (CV)
+              interaktif.
+            </p>
+            <a href="about.html" class="btn btn-outline btn-sm" style="width: 100%;">
+              Buka Halaman About <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- Card 2: Projects -->
+          <div class="glass-card teaser-card">
+            <div class="teaser-icon">
+              <i class="fa-solid fa-cubes"></i>
+            </div>
+            <h3 class="teaser-title">Portofolio Proyek (Project)</h3>
+            <p class="teaser-desc">
+              Temukan koleksi proyek Web App, Mobile App, dan UI/UX Design modern lengkap dengan filter kategori & modal
+              lightbox detail.
+            </p>
+            <a href="projects.html" class="btn btn-outline btn-sm" style="width: 100%;">
+              Buka Halaman Project <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- Card 3: Contact -->
+          <div class="glass-card teaser-card">
+            <div class="teaser-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <h3 class="teaser-title">Kontak & Lokasi (Contact)</h3>
+            <p class="teaser-desc">
+              Hubungi Paul via formulir pesan, nomor WhatsApp, email, serta lihat lokasi studio secara presisi pada
+              Google Maps interaktif.
+            </p>
+            <a href="contact.html" class="btn btn-outline btn-sm" style="width: 100%;">
+              Buka Halaman Contact <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER SECTION -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-code"></i></div>
+            <span>Paul<span class="gradient-text">Folio</span></span>
+          </a>
+          <p class="footer-tagline">
+            Mengembangkan solusi produk digital & desain kreatif modern dengan standar industri dan arsitektur kode
+            berkualitas.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com" target="_blank" class="social-icon" aria-label="GitHub"><i
+                class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i
+                class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Twitter"><i
+                class="fa-brands fa-twitter"></i></a>
+            <a href="https://dribbble.com" target="_blank" class="social-icon" aria-label="Dribbble"><i
+                class="fa-brands fa-dribbble"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Navigasi Halaman</h4>
+          <ul class="footer-menu">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i> About</a></li>
+            <li><a href="projects.html"><i class="fa-solid fa-chevron-right"></i> Project</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Skill Tags Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Keahlian Utama</h4>
+          <div class="project-tags">
+            <span class="tag">Creative Design</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">React.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">UI/UX Figma</span>
+            <span class="tag">Node.js</span>
+          </div>
+        </div>
+
+        <!-- Contact Info Column -->
+        <div class="footer-info-col">
+          <h4 class="footer-col-title">Informasi Kontak</h4>
+          <p><i class="fa-solid fa-user" style="color: var(--primary);"></i> Paulus Petrus P Sianipar</p>
+          <p><i class="fa-solid fa-envelope" style="color: var(--secondary);"></i> paulussianipar@gmail.com</p>
+          <p><i class="fa-solid fa-phone" style="color: var(--emerald);"></i> +62 85162744708 (WA Only)</p>
+          <p><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Bekasi, Jawa Barat, Indonesia</p>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>PaulFolio</strong> — Paulus Petrus P Sianipar. All Rights Reserved.
+        </div>
+        <div>
+          <a href="#" style="color: var(--text-muted); margin-right: 15px;">Privacy Policy</a>
+          <a href="#" style="color: var(--text-muted);">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Pesan berhasil dikirim!</span>
+  </div>
+
+  <!-- Auth Module -->
+  <script type="module" src="auth.js"></script>
+  <!-- Main JavaScript File -->
+  <script defer src="notification.js"></script>
+  <script defer src="script.js"></script>
+</body>
+
+</html>

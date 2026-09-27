@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — PaulFolio</title>
+  <meta name="description" content="Dashboard admin PaulFolio untuk mengelola proyek, pesan, dan user.">
+  <meta name="author" content="Paulus Petrus P Sianipar">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Ambient Background Dynamic Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="navbar-header" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-code"></i>
+        </div>
+        <span>Paul<span class="gradient-text">Folio</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="about.html" class="nav-link"><i class="fa-solid fa-user"></i> About</a>
+        <a href="projects.html" class="nav-link"><i class="fa-solid fa-briefcase"></i> Project</a>
+        <a href="contact.html" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </nav>
+
+      <!-- Admin Actions -->
+      <div class="header-actions">
+        <span class="admin-welcome-badge">
+          <i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i>
+          Admin: <strong id="adminUserName">Loading...</strong>
+        </span>
+        <button class="btn btn-outline btn-sm" id="adminLogoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <nav class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="about.html" class="mobile-nav-link"><i class="fa-solid fa-user"></i> About</a>
+      <a href="projects.html" class="mobile-nav-link"><i class="fa-solid fa-briefcase"></i> Project</a>
+      <a href="contact.html" class="mobile-nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </nav>
+    <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px;">
+      <button class="btn btn-outline" id="adminLogoutBtnMobile">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout Admin
+      </button>
+    </div>
+  </div>
+
+  <!-- ADMIN PAGE CONTENT -->
+  <main class="admin-page-main">
+
+    <!-- Loading State -->
+    <div class="admin-loading" id="adminLoading">
+      <div class="admin-spinner">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      </div>
+      <p>Memuat dashboard admin...</p>
+    </div>
+
+    <!-- Error State -->
+    <div class="admin-error" id="adminError" style="display: none;">
+      <i class="fa-solid fa-lock admin-error-icon"></i>
+      <h3>Akses Ditolak</h3>
+      <p class="admin-error-message">Anda harus login sebagai admin.</p>
+      <button class="btn btn-primary" id="adminGoAuth">
+        <i class="fa-solid fa-right-to-bracket"></i> ke Halaman Login
+      </button>
+    </div>
+
+    <!-- Admin Dashboard Content -->
+    <div id="adminContent" style="display: none;">
+      <div class="container">
+
+        <!-- Dashboard Header -->
+        <div class="admin-dashboard-header">
+          <div>
+            <h1 class="admin-page-title">Admin <span class="gradient-text">Dashboard</span></h1>
+            <p class="admin-page-subtitle">Kelola proyek, pesan masuk, dan user terdaftar.</p>
+          </div>
+          <div class="admin-stats-row">
+            <div class="admin-stat-card">
+              <span class="admin-stat-number" id="statProjects">0</span>
+              <span class="admin-stat-label"><i class="fa-solid fa-briefcase"></i> Proyek</span>
+            </div>
+            <div class="admin-stat-card">
+              <span class="admin-stat-number" id="statMessages">0</span>
+              <span class="admin-stat-label"><i class="fa-solid fa-envelope"></i> Pesan</span>
+            </div>
+            <div class="admin-stat-card">
+              <span class="admin-stat-number" id="statUsers">0</span>
+              <span class="admin-stat-label"><i class="fa-solid fa-users"></i> User</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-tab="projects">
+            <i class="fa-solid fa-briefcase"></i> Proyek
+          </button>
+          <button class="admin-tab" data-tab="messages">
+            <i class="fa-solid fa-envelope-open"></i> Pesan Masuk
+          </button>
+          <button class="admin-tab" data-tab="users">
+            <i class="fa-solid fa-users"></i> Manajemen User
+          </button>
+        </div>
+
+        <!-- ==================== TAB: PROJECTS ==================== -->
+        <div class="admin-tab-content active" id="tab-projects">
+
+          <!-- Add/Edit Project Form -->
+          <div class="glass-card admin-form-card" id="projectFormCard" style="padding: 28px; margin-bottom: 32px;">
+            <h3 class="admin-form-card-title" id="projectFormTitle">Tambah Proyek Baru</h3>
+            <form id="projectForm" class="admin-project-form">
+              <div class="admin-form-grid">
+                <div class="form-group">
+                  <label for="projectTitle">Judul Proyek <span class="required-star">*</span></label>
+                  <input type="text" id="projectTitle" class="form-input" placeholder="Contoh: SaaS Analytics Dashboard" required>
+                </div>
+                <div class="form-group">
+                  <label for="projectCategory">Kategori <span class="required-star">*</span></label>
+                  <select id="projectCategory" class="form-input" required>
+                    <option value="">Pilih Kategori</option>
+                    <option value="Web Application">Web Application</option>
+                    <option value="Mobile App">Mobile App</option>
+                    <option value="UI/UX Design">UI/UX Design</option>
+                    <option value="Lainnya">Lainnya</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="projectDescription">Deskripsi Proyek</label>
+                <textarea id="projectDescription" class="form-input form-textarea" rows="3" placeholder="Deskripsikan proyek secara singkat..."></textarea>
+              </div>
+              <div class="admin-form-grid">
+                <div class="form-group">
+                  <label for="projectImage">URL Gambar</label>
+                  <input type="url" id="projectImage" class="form-input" placeholder="https://example.com/image.png">
+                </div>
+                <div class="form-group">
+                  <label for="projectTechStack">Tech Stack (pisahkan dengan koma)</label>
+                  <input type="text" id="projectTechStack" class="form-input" placeholder="React.js, Laravel, MySQL">
+                </div>
+              </div>
+              <div class="admin-form-grid">
+                <div class="form-group">
+                  <label for="projectClient">Nama Klien</label>
+                  <input type="text" id="projectClient" class="form-input" placeholder="Contoh: CloudPulse Enterprise">
+                </div>
+                <div class="form-group">
+                  <label for="projectPeriod">Periode Pengerjaan</label>
+                  <input type="text" id="projectPeriod" class="form-input" placeholder="Contoh: 3 Bulan (2025)">
+                </div>
+              </div>
+              <div class="admin-form-actions">
+                <button type="submit" class="btn btn-primary" id="projectSubmitBtn">
+                  <i class="fa-solid fa-plus"></i> Tambah Proyek
+                </button>
+                <button type="button" class="btn btn-outline" id="projectCancelBtn" style="display: none;">
+                  <i class="fa-solid fa-xmark"></i> Batal
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Projects Table -->
+          <div class="glass-card admin-table-card" style="padding: 28px;">
+            <h3 class="admin-table-title"><i class="fa-solid fa-briefcase" style="color: var(--primary);"></i> Daftar Proyek</h3>
+            <div class="admin-table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Proyek</th>
+                    <th>Kategori</th>
+                    <th>Deskripsi</th>
+                    <th>Klien</th>
+                    <th>Periode</th>
+                    <th>Dibuat</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="projectsTableBody">
+                  <tr>
+                    <td colspan="7" style="text-align:center; padding: 40px; color: var(--text-muted);">
+                      <i class="fa-solid fa-spinner fa-spin"></i> Memuat data...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== TAB: MESSAGES ==================== -->
+        <div class="admin-tab-content" id="tab-messages">
+          <div class="glass-card admin-table-card" style="padding: 28px;">
+            <h3 class="admin-table-title"><i class="fa-solid fa-envelope-open" style="color: var(--secondary);"></i> Pesan Masuk</h3>
+            <div class="admin-table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Subjek</th>
+                    <th>Pesan</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="messagesTableBody">
+                  <tr>
+                    <td colspan="6" style="text-align:center; padding: 40px; color: var(--text-muted);">
+                      <i class="fa-solid fa-spinner fa-spin"></i> Memuat data...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== TAB: USERS ==================== -->
+        <div class="admin-tab-content" id="tab-users">
+          <div class="glass-card admin-table-card" style="padding: 28px;">
+            <h3 class="admin-table-title"><i class="fa-solid fa-users" style="color: var(--emerald);"></i> User Terdaftar</h3>
+            <div class="admin-table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Terdaftar</th>
+                    <th>Ubah Role</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                  <tr>
+                    <td colspan="6" style="text-align:center; padding: 40px; color: var(--text-muted);">
+                      <i class="fa-solid fa-spinner fa-spin"></i> Memuat data...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- MESSAGE DETAIL MODAL -->
+  <div class="modal-overlay" id="messageModal">
+    <div class="modal-content modal-lg glass-card" style="border-radius: var(--radius-lg);">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-envelope-open-text" style="color: var(--secondary);"></i> Detail Pesan</h3>
+        <button class="modal-close" id="closeMessageModalBtn" aria-label="Tutup modal">&times;</button>
+      </div>
+      <div class="modal-body" id="messageModalBody">
+        <!-- Diisi dinamis oleh admin.js -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="closeMessageModalFooterBtn">
+          <i class="fa-solid fa-xmark"></i> Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Pesan berhasil dikirim!</span>
+  </div>
+
+  <!-- Admin JavaScript -->
+  <script type="module" src="admin.js"></script>
+  <script defer src="script.js"></script>
+</body>
+
+</html>
