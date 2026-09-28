@@ -2762,6 +2762,314 @@ textarea.form-input {
   background: var(--bg-glass);
 }
 
+/* --- 13.1 ADMIN TOOLBAR: SEARCH, FILTER, EXPORT --- */
+.admin-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.admin-table-header .admin-table-title {
+  margin-bottom: 0;
+}
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-search-wrap i {
+  position: absolute;
+  left: 12px;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+.admin-search-input {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 9px 12px 9px 32px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  min-width: 240px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-search-input::placeholder {
+  color: var(--text-dim);
+}
+
+.admin-search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.admin-filter-select {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.admin-filter-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* --- 13.2 BULK ACTION BAR --- */
+.admin-bulk-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.admin-bulk-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* --- 13.3 PAGINATION --- */
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-glass);
+}
+
+.admin-pagination-info {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.admin-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-page-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.admin-page-btn:hover:not(:disabled):not(.active) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.admin-page-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.admin-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* --- 13.4 TABLE SELECTION --- */
+.admin-col-check {
+  width: 44px;
+  text-align: center;
+}
+
+.admin-col-check input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.admin-row-selected td {
+  background: rgba(99, 102, 241, 0.08) !important;
+}
+
+/* --- 13.5 READ / UNREAD BADGES --- */
+.admin-read-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-read-badge.unread {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--accent);
+}
+
+.admin-read-badge.read {
+  background: var(--bg-glass);
+  color: var(--text-dim);
+}
+
+.admin-unread-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.admin-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  margin-left: 6px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.admin-stat-card-clickable {
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.admin-stat-card-clickable:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+/* --- 13.6 IMAGE UPLOAD --- */
+.admin-image-upload {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.admin-image-preview {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border: 1px dashed var(--border-glass);
+  border-radius: var(--radius-md);
+  background: var(--bg-glass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--text-dim);
+  font-size: 1.4rem;
+}
+
+.admin-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-image-upload-controls {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-image-upload-hint {
+  color: var(--text-dim);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.admin-image-upload-controls .btn {
+  align-self: flex-start;
+}
+
+/* --- 13.7 TOOLBAR RESPONSIVE --- */
+@media (max-width: 768px) {
+  .admin-table-header {
+    align-items: stretch;
+  }
+
+  .admin-toolbar {
+    width: 100%;
+  }
+
+  .admin-search-wrap {
+    flex: 1;
+  }
+
+  .admin-search-input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .admin-image-upload {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-image-preview {
+    width: 100%;
+    height: 160px;
+  }
+
+  .admin-pagination {
+    justify-content: center;
+  }
+}
+
 /* ==========================================================================
    14. RESPONSIVE — AUTH & ADMIN
    ========================================================================== */

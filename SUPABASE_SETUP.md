@@ -26,12 +26,33 @@ Dokumentasi lengkap untuk mengaktifkan backend Supabase pada portfolio PaulFolio
 5. Klik **"Run"** (atau tekan `Ctrl+Enter`)
 6. Pastikan tidak ada error. Output sukses: `Success. No rows returned`
 
+> **WAJIB jalankan ulang setiap kali `supabase-schema.sql` berubah.**
+> File ini idempotent, jadi aman dijalankan berulang. Dashboard admin
+> tidak akan bisa membaca user lain maupun menandai pesan sebagai dibaca
+> sampai policy versi terbaru terpasang.
+
 Schema ini akan membuat:
 - Tabel `profiles` (data user + role)
 - Tabel `projects` (data proyek portfolio)
-- Tabel `contact_messages` (pesan dari form kontak)
+- Tabel `contact_messages` (pesan dari form kontak, termasuk kolom `is_read`)
 - Row Level Security (RLS) policies
+- Fungsi `is_admin()` dan `current_user_role()`
 - Trigger auto-create profile saat signup
+- Bucket Storage `project-images` untuk upload gambar proyek
+
+### Kenapa ada fungsi `is_admin()`
+
+Policy RLS tidak boleh melakukan subquery ke tabelnya sendiri. Policy di-OR-kan,
+jadi Postgres selalu mengevaluasi policy admin, dan subquery `SELECT ... FROM profiles`
+di dalam policy pada tabel `profiles` akan memicu RLS `profiles` lagi secara rekursif:
+
+```
+42P17: infinite recursion detected in policy for relation "profiles"
+```
+
+Akibatnya admin tidak bisa membaca user lain, dan guard di `admin.html` ikut gagal.
+Karena itu pengecekan role dibungkus fungsi `SECURITY DEFINER` yang punya
+`search_path` ter-pin, sehingga dieksekusi dengan hak pemilik dan tidak kena RLS.
 
 ---
 
@@ -165,6 +186,31 @@ paulfolio/
 - Pastikan role di tabel `profiles` sudah `'admin'`
 - Jalankan: `SELECT * FROM profiles WHERE email = 'EMAIL_ADMIN';`
 - Cek kolom `role` = `'admin'`
+
+### Error: "infinite recursion detected in policy for relation profiles"
+- Artinya `supabase-schema.sql` versi lama masih terpasang di database
+- Jalankan ulang seluruh isi `supabase-schema.sql` (idempotent, aman diulang)- Verifikasi policy yang terpasang sudah memanggil `public.is_admin()`, bukan
+  subquery langsung ke `profiles`:
+  ```sql
+  SELECT policyname, qual FROM pg_policies
+  WHERE tablename = 'profiles' AND policyname LIKE 'Admins%';
+  ```
+  `qual` harus berisi `public.is_admin()`.
+
+### Kolom `is_read` tidak ada / error saat tandai pesan dibaca
+- Jalankan ulang `supabase-schema.sql`, atau langsung:
+  ```sql
+  ALTER TABLE contact_messages ADD COLUMN IF NOT EXISTS is_read BOOLEAN NOT NULL DEFAULT FALSE;
+  ```
+
+### Upload gambar proyek gagal
+- Bucket `project-images` belum dibuat → jalankan ulang `supabase-schema.sql`
+- Cek policy storage:
+  ```sql
+  SELECT policyname FROM pg_policies
+  WHERE tablename = 'objects' AND policyname LIKE '%project images%';
+  ```
+- File maksimal 5 MB, dan hanya tipe image yang diizinkan oleh bucket
 
 ---
 
