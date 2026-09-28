@@ -1,5 +1,5 @@
 /**
- * PaulFolio — Admin Dashboard Logic
+ * PaulFolio â€” Admin Dashboard Logic
  *
  * Menangani CRUD untuk:
  * - Projects   (tabel `projects`)
@@ -8,10 +8,22 @@
  *
  * Hanya user dengan role 'admin' yang boleh mengakses dashboard ini.
  * Guard dilakukan di initAdmin() sebelum render apa pun.
+ *
+ * Catatan teknis: File ini sengaja TIDAK pakai ES module import/export
+ * agar bisa dimuat sebagai <script> biasa. Semua dependensi diambil
+ * dari global yang di-expose supabase.js dan auth.js.
  */
 
-import { supabase, isSupabaseConfigured } from './supabase.js';
-import { getCurrentUser, getCurrentProfile, signOut } from './auth.js';
+/**
+ * Tunggu client Supabase siap dipakai (supabase.js memuat SDK via CDN).
+ * @returns {Promise<object|null>}
+ */
+async function waitForSupabase() {
+  if (window.supabaseReady) {
+    await window.supabaseReady;
+  }
+  return window.supabase || null;
+}
 
 // ============================================================
 // STATE & UTIL
@@ -76,7 +88,7 @@ function friendlyError(err, fallback = 'Terjadi kesalahan.') {
 // AUTH GUARD
 // ============================================================
 async function requireAdmin() {
-  if (!isSupabaseConfigured()) {
+  if (!window.isSupabaseConfigured()) {
     return {
       ok: false,
       reason: 'unconfigured',
@@ -84,12 +96,21 @@ async function requireAdmin() {
     };
   }
 
-  const user = await getCurrentUser();
+  const client = await waitForSupabase();
+  if (!client) {
+    return {
+      ok: false,
+      reason: 'error',
+      message: 'Gagal memuat Supabase client. Periksa koneksi internet lalu refresh halaman.',
+    };
+  }
+
+  const user = await window.getCurrentUser();
   if (!user) {
     return { ok: false, reason: 'unauthenticated', message: 'Anda harus login sebagai admin.' };
   }
 
-  const { data: profile, error } = await getCurrentProfile(user);
+  const { data: profile, error } = await window.getCurrentProfile(user);
   if (error) {
     return { ok: false, reason: 'error', message: 'Gagal memuat profil: ' + error };
   }
@@ -107,7 +128,7 @@ async function requireAdmin() {
 // PROJECTS CRUD
 // ============================================================
 async function loadProjects() {
-  const { data, error } = await supabase
+  const { data, error } = await window.supabase
     .from('projects')
     .select('*')
     .order('created_at', { ascending: false });
@@ -207,13 +228,13 @@ async function handleProjectSubmit(event) {
   try {
     let error = null;
     if (state.editingProjectId) {
-      const res = await supabase
+      const res = await window.supabase
         .from('projects')
         .update(payload)
         .eq('id', state.editingProjectId);
       error = res.error;
     } else {
-      const res = await supabase.from('projects').insert(payload);
+      const res = await window.supabase.from('projects').insert(payload);
       error = res.error;
     }
 
@@ -260,7 +281,7 @@ async function deleteProject(id) {
   if (!p) return;
   if (!confirm(`Hapus proyek "${p.title}"? Tindakan ini tidak bisa dibatalkan.`)) return;
 
-  const { error } = await supabase.from('projects').delete().eq('id', id);
+  const { error } = await window.supabase.from('projects').delete().eq('id', id);
   if (error) {
     showToast('Gagal menghapus proyek: ' + friendlyError(error), true);
   } else {
@@ -274,7 +295,7 @@ async function deleteProject(id) {
 // MESSAGES CRUD
 // ============================================================
 async function loadMessages() {
-  const { data, error } = await supabase
+  const { data, error } = await window.supabase
     .from('contact_messages')
     .select('*')
     .order('created_at', { ascending: false });
@@ -356,7 +377,7 @@ async function deleteMessage(id) {
   if (!m) return;
   if (!confirm(`Hapus pesan dari "${m.name}"?`)) return;
 
-  const { error } = await supabase.from('contact_messages').delete().eq('id', id);
+  const { error } = await window.supabase.from('contact_messages').delete().eq('id', id);
   if (error) {
     showToast('Gagal menghapus pesan: ' + friendlyError(error), true);
   } else {
@@ -369,7 +390,7 @@ async function deleteMessage(id) {
 // USERS CRUD
 // ============================================================
 async function loadUsers() {
-  const { data, error } = await supabase
+  const { data, error } = await window.supabase
     .from('profiles')
     .select('*')
     .order('created_at', { ascending: false });
@@ -434,7 +455,7 @@ async function changeRole(userId, newRole) {
     return;
   }
 
-  const { error } = await supabase
+  const { error } = await window.supabase
     .from('profiles')
     .update({ role: newRole })
     .eq('id', userId);
@@ -452,7 +473,7 @@ async function deleteUser(userId) {
   const target = state.users.find(u => u.id === userId);
   if (!target) return;
 
-  const currentUser = await getCurrentUser();
+  const currentUser = await window.getCurrentUser();
   if (currentUser && currentUser.id === userId) {
     showToast('Anda tidak dapat menghapus akun sendiri.', true);
     return;
@@ -460,7 +481,7 @@ async function deleteUser(userId) {
 
   if (!confirm(`Hapus user "${target.name}" (${target.email})? Data auth user harus dihapus manual di dashboard Supabase.`)) return;
 
-  const { error } = await supabase.from('profiles').delete().eq('id', userId);
+  const { error } = await window.supabase.from('profiles').delete().eq('id', userId);
   if (error) {
     showToast('Gagal menghapus user: ' + friendlyError(error), true);
   } else {
@@ -529,7 +550,7 @@ async function initAdmin() {
   const logoutBtn = document.getElementById('adminLogoutBtn');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
-      await signOut();
+      await window.signOut();
       window.location.href = 'index.html';
     });
   }

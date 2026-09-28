@@ -24,20 +24,23 @@ window.SUPABASE_CONFIG = {
 // ============================================================
 // SUPABASE CLIENT (CDN)
 // ============================================================
-(function loadSupabase() {
-  if (typeof window.supabase !== 'undefined') {
+window.supabaseReady = new Promise((resolve) => {
+  if (window.supabase && typeof window.supabase.from === 'function') {
     // Supabase sudah dimuat (misal dari build Vite)
+    resolve(window.supabase);
+    return;
+  }
+
+  const config = window.SUPABASE_CONFIG;
+  if (config.url === 'YOUR_SUPABASE_URL' || config.anonKey === 'YOUR_SUPABASE_ANON_KEY') {
+    console.warn('[Supabase] Kredensial belum diisi. Ganti window.SUPABASE_CONFIG di supabase.js.');
+    resolve(null);
     return;
   }
 
   const script = document.createElement('script');
   script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
   script.onload = function () {
-    const config = window.SUPABASE_CONFIG;
-    if (config.url === 'YOUR_SUPABASE_URL' || config.anonKey === 'YOUR_SUPABASE_ANON_KEY') {
-      console.warn('[Supabase] Kredensial belum diisi. Ganti window.SUPABASE_CONFIG di supabase.js.');
-      return;
-    }
     window.supabase = window.supabase.createClient(config.url, config.anonKey, {
       auth: {
         autoRefreshToken: true,
@@ -46,9 +49,14 @@ window.SUPABASE_CONFIG = {
         flowType: 'pkce',
       },
     });
+    resolve(window.supabase);
+  };
+  script.onerror = function () {
+    console.error('[Supabase] Gagal memuat supabase-js dari CDN.');
+    resolve(null);
   };
   document.head.appendChild(script);
-})();
+});
 
 /**
  * Helper untuk mengecek apakah konfigurasi Supabase sudah diisi.
